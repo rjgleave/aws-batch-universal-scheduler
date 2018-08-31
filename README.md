@@ -1,13 +1,13 @@
-Submitting AWS Batch Jobs using API Gateway 
-==================================================
+Using AWS Batch as a Universal Job Scheduler
+============================================
 
-This solution illustrates how to trigger batch processes from on-premise systems using an http post action to an API.   This is a useful architecture for combining on-premise and cloud processes together into a single workflow.
+This solution utilizes AWS Batch to execute complex, multi-step job schedules across multiple platforms.   It takes advantage of the powerful AWS Batch job scheduling engine to handle complex job dependencies and automatically execute retries.   It utilizes AWS Step Functions to initiate schedules, monitor and record results in AWS DynamoDb.
 
-![Reference Architecture](https://github.com/rjgleave/aws-batch-api-submitter/blob/master/assets/trigger-batch-using-api-gateway.png)
+![Reference Architecture](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-universal-job-scheduler.png)
 
-![](https://github.com/rjgleave/aws-batch-api-submitter/blob/master/assets/Trigger-AWS-Batch-Integration-Job-Using-API-Gateway.png)
+![](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-universal-job-scheduler-legend.png)
 
-In this example, an on-premise process runs, followed by a cloud-based process.  At the completion of the on-premise process, an http message is posted to an api, which saves the transaction in DynamoDB.  A trigger on the dynamoDB table invokes a state machine (AWS Step Functions) which submits the job corresponding to the message.  Step Functions will monitor the job for success or failure, until its completion.   
+This architecture provides the flexibility of using AWS Batch to act as a worker and actually perform work, or to direct other services to perform that work (e.g. AWS Glue, Lambda or EC2).   
 
 
 What's Here
