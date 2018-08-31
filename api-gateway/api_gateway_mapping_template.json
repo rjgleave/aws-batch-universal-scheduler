@@ -1,0 +1,16 @@
+API GATEWAY Mapping Template
+
+{ 
+    "TableName": "BatchSchedules",
+    "Item": {
+	"scheduleId": {
+            "S": "$context.requestId"
+            },
+        "scheduleName": {
+            "S": "$input.path('$.scheduleName')"
+            },
+        "scheduleDetails": {
+            "M": "$input.path('$.scheduleDetails')"
+        }
+    }
+}
