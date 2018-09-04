@@ -9,11 +9,3 @@ through the api)
     "name": "executed-via-api-1",
     "stateMachineArn": "arn:aws:states:us-east-1:123456789012:stateMachine:BatchSchedulerMasterStateMachine"
 }
-
-
-Hello World
-{
-    "input": "{}",
-    "name": "MyExecution",
-    "stateMachineArn": "arn:aws:states:us-east-1:123456789012:stateMachine:Helloworld"
-}
