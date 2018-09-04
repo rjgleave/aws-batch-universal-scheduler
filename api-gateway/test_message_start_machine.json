@@ -2,7 +2,7 @@ This message can be used with api gateway to start a state machine directly
 Send this message to API gateway to start the state machine.
 Notes:  
 * input document - include \ for all quotes 
-* name - important -- this must be a unique name each time you execute the state machine!!!!  (maybe it could be mapped
+* name - IMPORTANT!!!! -- this must be a unique name EACH TIME you execute the state machine!!!!  (maybe it could be mapped
 through the api)
 {
     "input": "{\"scheduleId\" : \"daily-pm-load\"}",

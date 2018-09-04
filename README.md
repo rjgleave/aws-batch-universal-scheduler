@@ -16,38 +16,46 @@ What's Here
 This repo includes:
 
 1. README.md - this file
-2. FOLDER: dynamo - this contains code to help build the sample 
-transaction table in dynamoDB.  It includes:
-    *   schema.json - an example of the dynamoDB schema data structure
-    *   read_dynamo_stream.py - the lambda program which reads the dynamodb streams
-    *   test_streams.json - a sample stream file for testing the lambda above.
+2. FOLDER: dynamo - this contains code to help build the sample schedule table in dynamoDB.  It includes:
+    *   create_batch_schedule_table.py - this builds the schedule table
+    *   write_schedule_record.py - this writes the S3 schedule record into dynamoDb
+    *   sample_schedule.json - a sample schedule file which illustrates the structure
 3. FOLDER: api-gateway - contains templates to help build and test the API REST interface
-    *   api_gateway_mapping_template.json - this is the mapping document used to create the proxy api for the state machine service.
-    *   test_message.json - copy the json document and use to test the API.
+    *   test_message_start_machine.json - a sample document to illustrate the message used to trigger the schedule via the API.
 4. FOLDER: state_machine  - components to build the state machine
-    *   JobStatusPoller.py - a lambda to poll the status of batch jobs.
-    *    SubmitJobFunction.py - lambda function to submit a batch job. 
+    *   get_job_schedule.py - a lambda to retrieve the job schedule from dynamoDb
+    *   poll_jobs.py - a lambda to poll the status of all submitted batch jobs.
+    *   submit_jobs.py - lambda function to submit all batch jobs in the schedule. 
     *   JobStatusPollerStateMachine.json - definition of the state machine
-    *   input-template.json - the document used to submit the state machine
+    *   input-template.json - an input document that can be used to manually submit the state machine
 
 Setup Instructions
 ------------------
 
 Working Backwards, do the following:
 
-1. Create the state machine.  The easiest way to do this is to use the online jumpstart which will build it for you.  See instructions here:
-![Reference Architecture](https://github.com/rjgleave/aws-batch-api-submitter/blob/master/assets/step-function-sample-projects.png)
+1. Create the state machine. The easiest way is to use the online jumpstart (sample projects) which will build a basic state machine and all the AWS Batch infrastructure for you. Then you can modify it using the JobStatusPollerStateMachine definition provided in this repo.
+![Step Functions Sample Projects](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/step-function-sample-projects.png))
 
-2. Use the schema to build DynamoDB table.   Make sure you turn on streaming.
-3. Install the lambda to read the dynamodb stream.   You will need to modify it to pass in the input document and ARN of the state machine.    You can test it using the test_streams.json document.
-4. Create the API.  Use the provided mapping document.
+2. Create all the lambdas needed for the state machine (see folder above)
+Your state machine should look like this when you are done.
+![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine.png))
 
+3. Create a sample schedule (see provided example in the folder above).  Make sure to update it with your batch job queue and other information.
+![Sample Schedule](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-schedule.png))
+
+4. Create an S3 bucket to hold your job schedules.   Upload the schedule you created in the previous step above.
+![S3 Bucket](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/s3-bucket.png))
+
+5. Build DynamoDB table and load the S3 schedule into the table (use the programs provided in the folder above)
+6. Test your state machine manually, using the input-template.json document provided in the folder above.
+7. Create the API which you will use to start the state machine by sending a message.  See the instruction link below if you need help doing that.    Use the provided test message in the folder above to test.
 
 
 __Additional Resources__
 
-Blog: Using Amazon API Gateway as a proxy for DynamoDB
-https://aws.amazon.com/blogs/compute/using-amazon-api-gateway-as-a-proxy-for-dynamodb/
+AWS documentation: Using API gateway to host a REST API to start a state machine
+![Create API to start state machine](https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-api-gateway.html)
 
-SWS Step Functions
+AWS Step Functions.
 https://aws.amazon.com/step-functions/
