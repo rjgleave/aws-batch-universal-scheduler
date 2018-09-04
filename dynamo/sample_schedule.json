@@ -1,5 +1,5 @@
 {    
-    "scheduleId" : "daily-am-load",
+    "scheduleId" : "daily-pm-load",
     "category" : "big-data-schedules",
     "scheduleName" : "Morning load and ETL for big data",
     "jobList": [

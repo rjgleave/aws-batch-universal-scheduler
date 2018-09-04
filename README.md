@@ -35,11 +35,11 @@ Setup Instructions
 Working Backwards, do the following:
 
 1. Create the state machine. The easiest way is to use the online jumpstart (sample projects) which will build a basic state machine and all the AWS Batch infrastructure for you. Then you can modify it using the JobStatusPollerStateMachine definition provided in this repo.
-![Step Functions Sample Projects](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/step-function-sample-projects.png))
+![Step Functions Sample Projects](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/step-function-sample-projects.png)
 
 2. Create all the lambdas needed for the state machine (see folder above)
 Your state machine should look like this when you are done.
-![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine.png))
+![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine.png)
 
 3. Create a sample schedule (see provided example in the folder above).  Make sure to update it with your batch job queue and other information.
 
@@ -64,8 +64,8 @@ Your state machine should look like this when you are done.
 
 __Additional Resources__
 
-AWS documentation: Using API gateway to host a REST API to start a state machine
-![Create API to start state machine](https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-api-gateway.html)
+AWS documentation: Creating a Step Functions API Using API Gateway
+https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-api-gateway.html
 
 AWS Step Functions.
 https://aws.amazon.com/step-functions/
