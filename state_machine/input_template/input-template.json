@@ -1,19 +1,10 @@
-Use this format below...
+Sample state machine input templates to describe a job schedule load (before get from dynamoDB)
 
-{
-  "jobName": "my-job",
-  "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1",
-  "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-  "wait_time": 60
+{    
+  "scheduleId" : "daily-am-load"
 }
 
 
-NOTE: DO NOT use this format below, or it will FAIL!!
-    "input": {
-      "jobName": "my-job",
-      "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1",
-      "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-      "wait_time": 60
-    },
-    "roleArn": "arn:aws:iam::786247309603:role/StepFunctionsSample-JobStatusP-StatesExecutionRole-KOG0GGAHZYJ6"
-  }
+{    
+  "scheduleId" : "daily-pm-load"
+}
