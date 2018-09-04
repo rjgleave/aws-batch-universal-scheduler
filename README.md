@@ -1,13 +1,13 @@
 Using AWS Batch as a Universal Job Scheduler
 ============================================
 
-This solution utilizes AWS Batch to execute complex, multi-step job schedules across multiple platforms.   It takes advantage of the powerful AWS Batch job scheduling engine to handle complex job dependencies and automatically execute retries.   It utilizes AWS Step Functions to initiate schedules, monitor and record results in AWS DynamoDb.
+This solution utilizes AWS Batch to execute complex, multi-step job schedules across multiple platforms.   It takes advantage of the powerful AWS Batch job scheduling engine to handle complex job dependencies and automatically execute retries before failing.   It utilizes AWS Step Functions to start the schedule, monitor jobs and record results in AWS DynamoDb.
 
 ![Reference Architecture](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-universal-job-scheduler.png)
 
 ![](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-universal-job-scheduler-legend.png)
 
-This architecture provides the flexibility of using AWS Batch to act as a worker and actually perform work, or to direct other services to perform that work (e.g. AWS Glue, Lambda or EC2).   
+This example demonstrates the flexibility of using AWS Batch to act as both a worker actually perform work, or as an orchestrator, to direct other services to perform that work (e.g. AWS Glue, Lambda or EC2).   
 
 
 What's Here
@@ -42,14 +42,24 @@ Your state machine should look like this when you are done.
 ![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine.png))
 
 3. Create a sample schedule (see provided example in the folder above).  Make sure to update it with your batch job queue and other information.
-![Sample Schedule](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-schedule.png))
+
+![Sample Schedule](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-schedule.png)
 
 4. Create an S3 bucket to hold your job schedules.   Upload the schedule you created in the previous step above.
-![S3 Bucket](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/s3-bucket.png))
+
+![S3 Bucket](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/s3-bucket.png)
 
 5. Build DynamoDB table and load the S3 schedule into the table (use the programs provided in the folder above)
+
+![DynamoDB](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/dynamodb-schedule-table.png)
+
 6. Test your state machine manually, using the input-template.json document provided in the folder above.
-7. Create the API which you will use to start the state machine by sending a message.  See the instruction link below if you need help doing that.    Use the provided test message in the folder above to test.
+
+![Input Document](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-input-document.png)
+
+7. Create the API which you will use to start the state machine by sending a message.  See the instruction link below if you need help doing that.    Use the provided test message in the folder above.
+
+![API Gateway Message](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-api-gateway-message.png)
 
 
 __Additional Resources__
