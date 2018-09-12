@@ -8,7 +8,6 @@ import decimal
 from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 
-
 # Helper class to convert a DynamoDB item to JSON.
 class DecimalEncoder(json.JSONEncoder):
     def default(self, o):
@@ -19,7 +18,6 @@ class DecimalEncoder(json.JSONEncoder):
                 return int(o)
         return super(DecimalEncoder, self).default(o)
 
-
 print('Loading get_job_schedule function')
 
 # NOTE: YOU MUST SET UP THE REGION VARIABLE IN THE LAMBDA!
@@ -27,29 +25,52 @@ print('Loading get_job_schedule function')
 REGION = os.environ['AWS_REGION']
 
 dynamodb = boto3.resource("dynamodb", region_name=REGION)
-table = dynamodb.Table('BatchSchedules')
-
 
 def lambda_handler(event, context):
     # Log the received event
-    
-    print("Received event: " + json.dumps(event, indent=2))
+    #print("Received event: " + json.dumps(event, indent=2))
 
-    # Get the name of the category and batch schedule from the state machine input document
+    # Get the batch schedule ID and the run mode (regular or RESTART) from the state machine input document
     schedule_id = event['scheduleId']
+    schedule_status = event['scheduleStatus']
     
+    # if it is a re-start job, then pull the incomplete schedule from history
     try:
-        response = table.get_item(
-            Key={
-                'scheduleId': schedule_id
-            }
-        )
+        if schedule_status == 'RESTART':
+            table = dynamodb.Table('BatchScheduleHistory')
+            start_date_time = event['startDateTime']
+            print('start date',start_date_time)
+            response = table.get_item(
+                Key={
+                    'scheduleId': schedule_id,
+                    'startDateTime': start_date_time
+                }
+            )
+            # if restarting, then remove all prior failed job IDs so that they re-submit    
+            # >>>>>>> put new code here to clear the job ids
+        else:
+            table = dynamodb.Table('BatchSchedules')
+            response = table.get_item(
+                Key={
+                    'scheduleId': schedule_id
+                }
+            )
 
     except ClientError as e:
         print(e.response['Error']['Message'])
+        event['scheduleStatus'] = "FAILED"
     else:
-        item = response['Item']
-        print("GetItem succeeded:")
-        print(json.dumps(item, indent=4, cls=DecimalEncoder))
+        print(response)
+        if 'Item' in response:
+            item = response['Item']
+            print("GetItem succeeded:")
+            event = item
+        else:
+            event['scheduleStatus'] = "FAILED"
+            print("Error: schedule record not found")
 
-        return item
+    if schedule_status == 'RESTART':
+        event['scheduleStatus'] = "RESTART"
+    print('function complete')
+    print(json.dumps(event, indent=4, cls=DecimalEncoder))
+    return event

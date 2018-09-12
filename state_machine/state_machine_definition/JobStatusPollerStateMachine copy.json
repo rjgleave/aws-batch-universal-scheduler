@@ -4,35 +4,13 @@
   "States": {
     "Retrieve Batch Schedule": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:12345678:function:getJobSchedule",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:getJobSchedule",
       "ResultPath": "$",
-      "Next": "Schedule Found?"
-    },
-    "Schedule Found?": {
-      "Type": "Choice",
-      "Choices": [
-        {
-          "Variable": "$.scheduleStatus",
-          "StringEquals": "FAILED",
-          "Next": "Job Failed"
-        }
-      ],
-      "Default": "Restart Failed Schedule?"
-    },
-    "Restart Failed Schedule?": {
-      "Type": "Choice",
-      "Choices": [
-        {
-          "Variable": "$.scheduleStatus",
-          "StringEquals": "RESTART",
-          "Next": "Get Job Status"
-        }
-      ],
-      "Default": "Submit Schedule"
+      "Next": "Submit Schedule"
     },
     "Submit Schedule": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:12345678:function:BatchSchedulerJobSubmitter",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:BatchSchedulerJobSubmitter",
       "ResultPath": "$",
       "Next": "Wait X Seconds"
     },
@@ -43,15 +21,9 @@
     },
     "Get Job Status": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:12345678:function:BatchScheduleJobPoller",
-      "Next": "Update History",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:BatchScheduleJobPoller",
+      "Next": "Job Complete?",
       "ResultPath": "$"
-    },
-    "Update History": {
-      "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:12345678:function:updateBatchHistory",
-      "ResultPath": "$",
-      "Next": "Job Complete?"
     },
     "Job Complete?": {
       "Type": "Choice",
@@ -72,7 +44,7 @@
     "Job Failed": {
       "Type": "Fail",
       "Cause": "AWS Batch Job Failed",
-      "Error": "Batch Schedule FAILED"
+      "Error": "DescribeJob returned FAILED"
     },
     "Job Succeeded": {
       "Type": "Succeed"

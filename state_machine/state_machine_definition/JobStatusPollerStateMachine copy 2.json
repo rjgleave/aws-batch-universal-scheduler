@@ -17,17 +17,6 @@
           "Next": "Job Failed"
         }
       ],
-      "Default": "Restart Failed Schedule?"
-    },
-    "Restart Failed Schedule?": {
-      "Type": "Choice",
-      "Choices": [
-        {
-          "Variable": "$.scheduleStatus",
-          "StringEquals": "RESTART",
-          "Next": "Get Job Status"
-        }
-      ],
       "Default": "Submit Schedule"
     },
     "Submit Schedule": {
@@ -72,7 +61,7 @@
     "Job Failed": {
       "Type": "Fail",
       "Cause": "AWS Batch Job Failed",
-      "Error": "Batch Schedule FAILED"
+      "Error": "DescribeJob returned FAILED"
     },
     "Job Succeeded": {
       "Type": "Succeed"

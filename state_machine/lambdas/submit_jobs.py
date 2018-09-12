@@ -73,6 +73,7 @@ def submit_batch_job(job, jobList):
         message = 'Error submitting Batch Job'
         print(message)
         raise Exception(message)
+        event['jobStatus'] = "FAILED" 
 
 
 def lambda_handler(event, context):
@@ -104,4 +105,4 @@ def lambda_handler(event, context):
                     event['scheduleStatus'] = "RUNNING"
         i = i + 1
 
-    return
+    return event
