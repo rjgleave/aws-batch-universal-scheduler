@@ -15,27 +15,21 @@ What's Here
 
 This repo includes:
 
-1. README.md - this file
-2. FOLDER: dynamo - this contains code to help build the sample schedule table in dynamoDB.  It includes:
+1. README.md - this file and assets folder with images to support it.
+2. FOLDER: api-gateway - contains templates to help build and test the API REST interface
+    *   test_message_start_machine.json - a sample document to illustrate the message used to trigger the schedule via the API.
+3. FOLDER: dynamo - this contains code to help build the sample schedule table in dynamoDB.  It includes:
     *   create_batch_schedule_table.py - this builds the schedule table
     *   write_schedule_record.py - this writes the S3 schedule record into dynamoDb
     *   sample_schedule.json - a sample schedule file which illustrates the structure
-3. FOLDER: api-gateway - contains templates to help build and test the API REST interface
-    *   test_message_start_machine.json - a sample document to illustrate the message used to trigger the schedule via the API.
-4. FOLDER: state_machine  - components to build the state machine
+4. FOLDER: fetch-and-run - contains a generic Docker file and several sample 'fetch' scripts which can be executed from that container.     
+5. FOLDER: state_machine  - components to build the state machine
     *   get_job_schedule.py - a lambda to retrieve the job schedule from dynamoDb
     *   poll_jobs.py - a lambda to poll the status of all submitted batch jobs.
     *   submit_jobs.py - lambda function to submit all batch jobs in the schedule. 
     *   JobStatusPollerStateMachine.json - definition of the state machine
     *   input-template.json - an input document that can be used to manually submit the state machine
-
-Setup Instructions (see down below)
-------------------
-
-Operating Instructions
-----------------------
-Step 1: Create a job schedule
-
+6. FOLDER: tests - contains several sample templates and scripts for testing the state machine.
 
 
 Setup Instructions
@@ -43,7 +37,7 @@ Setup Instructions
 
 Working Backwards, do the following:
 
-1. Create the state machine. The easiest way is to use the online jumpstart (sample projects) which will build a basic state machine and all the AWS Batch infrastructure for you. Then you can modify it using the JobStatusPollerStateMachine definition provided in this repo.
+1. Create the state machine and batch infrastructure. The easiest way is to use the online jumpstart (sample projects) which will build a basic state machine and all the AWS Batch infrastructure for you. Then you can modify the state machine by replacing the definition with the JobStatusPollerStateMachine definition provided in this repo.
 ![Step Functions Sample Projects](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/step-function-sample-projects.png)
 
 2. Create all the lambdas needed for the state machine (see folder above)
