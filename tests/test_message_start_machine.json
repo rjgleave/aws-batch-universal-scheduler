@@ -7,7 +7,7 @@ Notes:
 through the api)
 {
     "input": "{\"scheduleId\" : \"daily-am-load\", \"startDateTime\" : \" \", \"scheduleStatus\" : \" \"}",
-    "name": "executed-via-api-31",
+    "name": "executed-via-api-1",
     "stateMachineArn": "arn:aws:states:us-east-1:786247309603:stateMachine:BatchSchedulerMasterStateMachine"
 }
 

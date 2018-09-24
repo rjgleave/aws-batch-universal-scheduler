@@ -1,7 +1,7 @@
 Using AWS Batch as a Universal Job Scheduler
 ============================================
 
-This solution utilizes AWS Batch to execute complex, multi-step job schedules across multiple platforms.   It takes advantage of the powerful AWS Batch job scheduling engine to handle complex job dependencies and automatically execute retries before failing.   It utilizes AWS Step Functions to start the schedule, monitor jobs and record results in AWS DynamoDb.
+This solution utilizes AWS Batch to execute complex, multi-step job schedules across multiple platforms.   It takes advantage of the powerful AWS Batch job scheduling engine to handle complex job dependencies and automatically execute retries before failing.   It utilizes AWS Step Functions to start the schedule, monitor jobs and record results in AWS DynamoDb.  
 
 ![Reference Architecture](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-universal-job-scheduler.png)
 
@@ -28,6 +28,15 @@ This repo includes:
     *   submit_jobs.py - lambda function to submit all batch jobs in the schedule. 
     *   JobStatusPollerStateMachine.json - definition of the state machine
     *   input-template.json - an input document that can be used to manually submit the state machine
+
+Setup Instructions (see down below)
+------------------
+
+Operating Instructions
+----------------------
+Step 1: Create a job schedule
+
+
 
 Setup Instructions
 ------------------

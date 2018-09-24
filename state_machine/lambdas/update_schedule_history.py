@@ -4,21 +4,9 @@ import json
 import urllib
 import boto3
 import os
-import decimal
 from datetime import datetime
 from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
-
-
-# Helper class to convert a DynamoDB item to JSON.
-class DecimalEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, decimal.Decimal):
-            if abs(o) % 1 > 0:
-                return float(o)
-            else:
-                return int(o)
-        return super(DecimalEncoder, self).default(o)
 
 
 print('Loading update_schedule_history function')
@@ -53,7 +41,9 @@ def lambda_handler(event, context):
         )
 
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        event['scheduleMessage'] = e.response['Error']['Message']
+        print(event['scheduleMessage'])
     else:
         print("history update succeeded:")
-        return event
+
+    return event

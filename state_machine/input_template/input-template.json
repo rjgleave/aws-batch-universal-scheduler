@@ -13,10 +13,11 @@ These are examples of a clean, initial run
   "scheduleStatus" : " "
 }
 
-These are examples of a restart of a failed schedule
+These are examples of a restart of a failed schedule.  NOTE: you must provide the startDateTime
+of the failed job and also set the scheduleStatus to 'RESTART'
 {    
   "scheduleId" : "daily-am-load",
-  "startDateTime" : "2018-09-10T14:09:57.855396",
+  "startDateTime" : "2018-09-24T22:01:52.337998",
   "scheduleStatus" : "RESTART"
 }
 

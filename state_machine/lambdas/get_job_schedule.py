@@ -34,7 +34,7 @@ def lambda_handler(event, context):
     schedule_id = event['scheduleId']
     schedule_status = event['scheduleStatus']
     
-    # if it is a re-start job, then pull the incomplete schedule from history
+    # if it is a re-start job, then pull the failed schedule from history
     try:
         if schedule_status == 'RESTART':
             table = dynamodb.Table('BatchScheduleHistory')
@@ -46,8 +46,6 @@ def lambda_handler(event, context):
                     'startDateTime': start_date_time
                 }
             )
-            # if restarting, then remove all prior failed job IDs so that they re-submit    
-            # >>>>>>> put new code here to clear the job ids
         else:
             table = dynamodb.Table('BatchSchedules')
             response = table.get_item(
@@ -57,7 +55,8 @@ def lambda_handler(event, context):
             )
 
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        event['scheduleMessage'] = e.response['Error']['Message']
+        print(event['scheduleMessage'])
         event['scheduleStatus'] = "FAILED"
     else:
         print(response)
@@ -67,10 +66,12 @@ def lambda_handler(event, context):
             event = item
         else:
             event['scheduleStatus'] = "FAILED"
-            print("Error: schedule record not found")
+            event['scheduleMessage'] = "Error: schedule record not found"
+            print(event['scheduleMessage'])
 
     if schedule_status == 'RESTART':
         event['scheduleStatus'] = "RESTART"
+        
     print('function complete')
     print(json.dumps(event, indent=4, cls=DecimalEncoder))
     return event

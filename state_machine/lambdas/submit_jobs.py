@@ -41,7 +41,10 @@ def submit_batch_job(job, jobList):
     depOn=[]
     for name in nameList:
         for j in jobList:
-            if j['jobName'] == name:
+            # NOTE: special logic below to skip (PASS) failed job steps.   If you manually
+            # change the job status to PASS in the schedule history record, it will skip 
+            # that failed step
+            if j['jobName'] == name and j['jobStatus'] != 'PASS':
                 # get the job ID of the batch instance
                 jid = j.get('jobId')
                 if type(jid) == dict:
@@ -69,9 +72,8 @@ def submit_batch_job(job, jobList):
             'jobId': jobId
         }
     except Exception as e:
-        print(e)
-        message = 'Error submitting Batch Job'
-        print(message)
+        event['scheduleMessage'] = e.response['Error']['Message']
+        print(event['scheduleMessage'])
         raise Exception(message)
         event['jobStatus'] = "FAILED" 
 
@@ -86,8 +88,10 @@ def lambda_handler(event, context):
     # iterate through the jobs to get the current status of each
     i=0
     for j in jobList:
-        # determine if batch can be submitted
-        if j['jobStatus'] == "SUCCEEDED":
+        # NOTE: special logic below to skip (PASS) failed job steps.   If you manually
+        # change the job status to PASS in the schedule history record, it will skip 
+        # that failed step
+        if j['jobStatus'] == "SUCCEEDED" or j['jobStatus'] == "PASS":
             pass
         else:
             if j['jobStatus'] == "FAILED" or j['jobStatus'] == "NOTFOUND":

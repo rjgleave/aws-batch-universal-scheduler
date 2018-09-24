@@ -28,7 +28,7 @@ def poll_job(job):
 
 def lambda_handler(event, context):
     # Log the received event
-    print("Received event: " + json.dumps(event, indent=2))
+    #print("Received event: " + json.dumps(event, indent=2))
 
     # Get the joblist from the event
     jobList = event['jobList']
@@ -39,7 +39,10 @@ def lambda_handler(event, context):
     i=0
     for j in jobList:
         event['jobList'][i] = poll_job(j)
-        if j['jobStatus'] == "SUCCEEDED":
+        # NOTE: special logic below to skip (PASS) failed job steps.   If you manually
+        # change the job status to PASS in the schedule history record, it will skip 
+        # that failed step
+        if j['jobStatus'] == "SUCCEEDED" or j['jobStatus'] == "PASS":
             pass
         else:
             if j['jobStatus'] == "FAILED" or j['jobStatus'] == "NOTFOUND":
@@ -57,4 +60,4 @@ def lambda_handler(event, context):
         else:
             event['scheduleStatus'] = "SUCCEEDED"
 
-    return 
+    return event
