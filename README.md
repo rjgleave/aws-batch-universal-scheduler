@@ -42,7 +42,7 @@ Working Backwards, do the following:
 
 2. Create all the lambdas needed for the state machine (see folder above)
 Your state machine should look like this when you are done.
-![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine.png)
+![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine2.png)
 
 3. Create a sample schedule (see provided example in the folder above).  Make sure to update it with your batch job queue and other information.
 
