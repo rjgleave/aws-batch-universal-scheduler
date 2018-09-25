@@ -42,6 +42,7 @@ Working Backwards, do the following:
 
 2. Create all the lambdas needed for the state machine (see folder above)
 Your state machine should look like this when you are done.
+
 ![State Machine](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/aws-batch-state-machine2.png)
 
 3. Create a sample schedule (see provided example in the folder above).  Make sure to update it with your batch job queue and other information.
@@ -68,10 +69,9 @@ Your state machine should look like this when you are done.
 
 Other Topics:
 -------------
-
 a) Restarting failed jobs:   This can be done by using the RESTART input document or submitting the RESTART message (if using API gateway).   See examples below.
 
-![Restart Messages](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/restart-messages.png)
+![Restart Messages](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/restart-messages2.png)
 
 The key difference between a normal start document and a restart document is the addition of the Start Date/Time as well as the "RESTART" status code. 
 Restarts will automatically handle dependencies and know which jobs have complete already to avoid duplicate processing. 
