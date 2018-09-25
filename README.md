@@ -67,15 +67,18 @@ Your state machine should look like this when you are done.
 ![API Gateway Message](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-api-gateway-message.png)
 
 Other Topics:
+-------------
 
 a) Restarting failed jobs:   This can be done by using the RESTART input document or submitting the RESTART message (if using API gateway).   See examples below.
 
+![Restart Messages](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/restart-messages.png)
 
 The key difference between a normal start document and a restart document is the addition of the Start Date/Time as well as the "RESTART" status code. 
 Restarts will automatically handle dependencies and know which jobs have complete already to avoid duplicate processing. 
 
-
 b) Skipping Steps:  Sometimes you may want to skip a certain step during a restart process. If so, you simply find that scheduled instance in the Schedule History table and change the status of that particular job step to "PASS" as illustrated below.  
+
+![Skipping Steps](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/skip-step.png)
 
 Then simply restart the job as indicated in section a) above.
 
