@@ -22,6 +22,7 @@ This repo includes:
     *   create_batch_schedule_table.py - this builds the schedule table
     *   write_schedule_record.py - this writes the S3 schedule record into dynamoDb
     *   sample_schedule.json - a sample schedule file which illustrates the structure
+    *   create_batch_schedule_history.py - use this to buld the schedule history table.  This table is updated automatically each time a schedule runs.   In addition, failed schedules are restarted using this table.
 4. FOLDER: fetch-and-run - contains a generic Docker file and several sample 'fetch' scripts which can be executed from that container.     
 5. FOLDER: state_machine  - components to build the state machine
     *   get_job_schedule.py - a lambda to retrieve the job schedule from dynamoDb
@@ -30,7 +31,6 @@ This repo includes:
     *   JobStatusPollerStateMachine.json - definition of the state machine
     *   input-template.json - an input document that can be used to manually submit the state machine
 6. FOLDER: tests - contains several sample templates and scripts for testing the state machine.
-
 
 Setup Instructions
 ------------------
@@ -52,17 +52,34 @@ Your state machine should look like this when you are done.
 
 ![S3 Bucket](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/s3-bucket.png)
 
-5. Build DynamoDB table and load the S3 schedule into the table (use the programs provided in the folder above)
+5. Build DynamoDB schedule table and load the S3 schedule into the table (use the programs provided in the folder above)
 
 ![DynamoDB](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/dynamodb-schedule-table.png)
 
-6. Test your state machine manually, using the input-template.json document provided in the folder above.
+6. Create a Schedule History table in DynamoDB to hold the processed schedules each time they complete processing.   
+
+7. Test your state machine manually, using the input-template.json document provided in the folder above.
 
 ![Input Document](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-input-document.png)
 
-7. Create the API which you will use to start the state machine by sending a message.  See the instruction link below if you need help doing that.    Use the provided test message in the folder above.
+8. Create the API which you can use as an alternate mechanism to start the state machine by sending a message.  See the instruction link below if you need help doing that.    Use the provided test message in the folder above.
 
 ![API Gateway Message](https://github.com/rjgleave/aws-batch-universal-scheduler/blob/master/assets/sample-api-gateway-message.png)
+
+Other Topics:
+
+a) Restarting failed jobs:   This can be done by using the RESTART input document or submitting the RESTART message (if using API gateway).   See examples below.
+
+
+The key difference between a normal start document and a restart document is the addition of the Start Date/Time as well as the "RESTART" status code. 
+Restarts will automatically handle dependencies and know which jobs have complete already to avoid duplicate processing. 
+
+
+b) Skipping Steps:  Sometimes you may want to skip a certain step during a restart process. If so, you simply find that scheduled instance in the Schedule History table and change the status of that particular job step to "PASS" as illustrated below.  
+
+Then simply restart the job as indicated in section a) above.
+
+
 
 
 __Additional Resources__
