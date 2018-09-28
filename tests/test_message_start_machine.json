@@ -8,12 +8,12 @@ through the api)
 {
     "input": "{\"scheduleId\" : \"daily-am-load\", \"startDateTime\" : \" \", \"scheduleStatus\" : \" \"}",
     "name": "executed-via-api-1",
-    "stateMachineArn": "arn:aws:states:us-east-1:786247309603:stateMachine:BatchSchedulerMasterStateMachine"
+    "stateMachineArn": "arn:aws:states:us-east-1:1234567890:stateMachine:BatchSchedulerMasterStateMachine"
 }
 
 This is an example of a restart
 {
     "input": "{\"scheduleId\" : \"daily-am-load\", \"startDateTime\" : \"2018-09-07T04:20:00.884784\", \"scheduleStatus\" : \"RESTART\"}",
     "name": "executed-via-api-5",
-    "stateMachineArn": "arn:aws:states:us-east-1:786247309603:stateMachine:BatchSchedulerMasterStateMachine"
+    "stateMachineArn": "arn:aws:states:us-east-1:1234567890:stateMachine:BatchSchedulerMasterStateMachine"
 }

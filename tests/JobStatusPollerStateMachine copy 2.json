@@ -4,7 +4,7 @@
   "States": {
     "Retrieve Batch Schedule": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:786247309603:function:getJobSchedule",
+      "Resource": "arn:aws:lambda:us-east-1:123456789:function:getJobSchedule",
       "ResultPath": "$",
       "Next": "Schedule Found?"
     },
@@ -21,7 +21,7 @@
     },
     "Submit Schedule": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:786247309603:function:BatchSchedulerJobSubmitter",
+      "Resource": "arn:aws:lambda:us-east-1:123456789:function:BatchSchedulerJobSubmitter",
       "ResultPath": "$",
       "Next": "Wait X Seconds"
     },
@@ -32,13 +32,13 @@
     },
     "Get Job Status": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:786247309603:function:BatchScheduleJobPoller",
+      "Resource": "arn:aws:lambda:us-east-1:123456789:function:BatchScheduleJobPoller",
       "Next": "Update History",
       "ResultPath": "$"
     },
     "Update History": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:786247309603:function:updateBatchHistory",
+      "Resource": "arn:aws:lambda:us-east-1:123456789:function:updateBatchHistory",
       "ResultPath": "$",
       "Next": "Job Complete?"
     },

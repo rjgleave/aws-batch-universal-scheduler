@@ -63,8 +63,8 @@ This is an example of a restart job schedule
             "jobId": "c5296a0a-ad93-4b09-9ed6-2cac6e95524d"
           },
           "jobStatus": "RUNNABLE",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "job2",
@@ -75,8 +75,8 @@ This is an example of a restart job schedule
             "jobId": "ad533318-3aa9-4d14-81ad-ee67f2e21898"
           },
           "jobStatus": "PENDING",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "job3",
@@ -87,8 +87,8 @@ This is an example of a restart job schedule
             "jobId": "cef18688-ef26-4af6-922b-67f69212aaca"
           },
           "jobStatus": "PENDING",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "job4",
@@ -100,8 +100,8 @@ This is an example of a restart job schedule
             "jobId": "c9cafe25-6766-402b-982b-ae3bbdc8b440"
           },
           "jobStatus": "PENDING",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "job5",
@@ -114,8 +114,8 @@ This is an example of a restart job schedule
             "jobId": "01a61cca-5bff-4809-991f-cf00cb17a3a2"
           },
           "jobStatus": "PENDING",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         }
       ],
       "scheduleId": "daily-am-load",

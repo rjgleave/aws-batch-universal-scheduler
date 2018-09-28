@@ -9,8 +9,8 @@
           },
           "jobDependencies": [],
           "jobStatus": "SUCCEEDED",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "Cleanse",
@@ -21,8 +21,8 @@
             "FTP"
           ],
           "jobStatus": "SKIP",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "ConvertParquet",
@@ -33,8 +33,8 @@
             "FTP"
           ],
           "jobStatus": "SUCCEEDED",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "Aggregate",
@@ -47,8 +47,8 @@
           ],
           "jobStatus": "SUCCEEDED",
 
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         },
         {
           "jobName": "LoadRedshift",
@@ -61,12 +61,12 @@
             "Aggregate"
           ],
           "jobStatus": "SUCCEEDED",
-          "jobQueue": "arn:aws:batch:us-east-1:786247309603:job-queue/SampleJobQueue-5da08f800c56cd4",
-          "jobDefinition": "arn:aws:batch:us-east-1:786247309603:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
+          "jobQueue": "arn:aws:batch:us-east-1:1234567890:job-queue/SampleJobQueue-5da08f800c56cd4",
+          "jobDefinition": "arn:aws:batch:us-east-1:1234567890:job-definition/SampleJobDefinition-49e0468e4a867f5:1"
         }
       ],
       "scheduleId": "daily-edw-load",
-      "scheduleSnsTopic": "arn:aws:sns:us-east-1:786247309603:StepFunctionsSample-TaskTimer-45ecbddc-ab41-6310-1209-4e9f55e8a709-SNSTopic-ZVOI2L5XGS6X",
+      "scheduleSnsTopic": "arn:aws:sns:us-east-1:1234567890:StepFunctionsSample-TaskTimer-45ecbddc-ab41-6310-1209-4e9f55e8a709-SNSTopic-ZVOI2L5XGS6X",
       "scheduleName": "Morning load and ETL for big data",
       "scheduleStatus": "SUCCEEDED",
       "category": "big-data-schedules",
