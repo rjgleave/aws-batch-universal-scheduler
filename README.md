@@ -86,7 +86,6 @@ Then simply restart the job as indicated in section a) above.
 
 
 __Additional Resources__
-
 AWS documentation: Creating a Step Functions API Using API Gateway
 https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-api-gateway.html
 
